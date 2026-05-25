@@ -20,10 +20,12 @@ import 'package:flutter/material.dart';
 import 'package:go_router_sugar/go_router_sugar.dart';
 
 import 'pages/about_page.dart';
+import 'pages/categories_page.dart';
 import 'pages/faq_page.dart';
 import 'pages/forgot_password_page.dart';
 import 'pages/index_page.dart';
 import 'pages/login_page.dart';
+import 'pages/products_page.dart';
 import 'pages/register_page.dart';
 
 /// 🍬 Your App's Complete Routing Configuration
@@ -35,7 +37,7 @@ class AppRouter {
 
   /// 🎯 The complete GoRouter configuration for your app
   ///
-  /// Includes 6 routes with full type safety and parameter validation.
+  /// Includes 8 routes with full type safety and parameter validation.
   static final GoRouter router = GoRouter(
     initialLocation: '/',
     routes: [
@@ -49,6 +51,12 @@ class AppRouter {
         path: '/about',
         builder: (context, state) {
           return const AboutPage();
+        },
+      ),
+      GoRoute(
+        path: '/categories',
+        builder: (context, state) {
+          return const CategoriesPage();
         },
       ),
       GoRoute(
@@ -67,6 +75,12 @@ class AppRouter {
         path: '/login',
         builder: (context, state) {
           return const LoginPage();
+        },
+      ),
+      GoRoute(
+        path: '/products',
+        builder: (context, state) {
+          return const ProductsPage();
         },
       ),
       GoRoute(
@@ -92,6 +106,9 @@ class Routes {
   /// 📄 About page
   static const String about = '/about';
 
+  /// 📄 Categories page
+  static const String categories = '/categories';
+
   /// 📄 Faq page
   static const String faq = '/faq';
 
@@ -101,6 +118,9 @@ class Routes {
   /// 📄 Login page
   static const String login = '/login';
 
+  /// 📄 Products page
+  static const String products = '/products';
+
   /// 📄 Register page
   static const String register = '/register';
 
@@ -108,9 +128,11 @@ class Routes {
   static const List<String> all = [
     home,
     about,
+    categories,
     faq,
     forgot_password,
     login,
+    products,
     register,
   ];
 }
@@ -150,6 +172,15 @@ class Navigate {
     context.go('/about');
   }
 
+  /// 📄 Categories page
+  static void toCategories() {
+    final context = _navigatorKey.currentContext;
+    if (context == null) {
+      throw StateError('Navigator context is null. Make sure AppRouter.router is used in MaterialApp.router');
+    }
+    context.go('/categories');
+  }
+
   /// 📄 Faq page
   static void toFaq() {
     final context = _navigatorKey.currentContext;
@@ -177,6 +208,15 @@ class Navigate {
     context.go('/login');
   }
 
+  /// 📄 Products page
+  static void toProducts() {
+    final context = _navigatorKey.currentContext;
+    if (context == null) {
+      throw StateError('Navigator context is null. Make sure AppRouter.router is used in MaterialApp.router');
+    }
+    context.go('/products');
+  }
+
   /// 📄 Register page
   static void toRegister() {
     final context = _navigatorKey.currentContext;
@@ -200,6 +240,9 @@ extension GoRouterSugarNavigation on BuildContext {
   /// 📄 About page
   void goToAbout() => Navigate.toAbout();
 
+  /// 📄 Categories page
+  void goToCategories() => Navigate.toCategories();
+
   /// 📄 Faq page
   void goToFaq() => Navigate.toFaq();
 
@@ -208,6 +251,9 @@ extension GoRouterSugarNavigation on BuildContext {
 
   /// 📄 Login page
   void goToLogin() => Navigate.toLogin();
+
+  /// 📄 Products page
+  void goToProducts() => Navigate.toProducts();
 
   /// 📄 Register page
   void goToRegister() => Navigate.toRegister();
